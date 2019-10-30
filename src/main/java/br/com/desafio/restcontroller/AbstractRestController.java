@@ -53,16 +53,16 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 		log.debug(" << create entity {} ", entity);
 	}
 	
-	@PutMapping(value = "/")
+	@PutMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public void update(@Valid @RequestBody T entity){
+	public void update(@PathVariable(value = "id", required = true) PK id, @Valid @RequestBody T entity){
 		log.debug(" >> create entity {} ", entity);
-		entity = getService().save(entity);
+		entity = getService().update(id, entity);
 		log.debug(" << create entity {} ", entity);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable PK id) {
+	public void deleteById(@PathVariable(value = "id", required = true) PK id) {
 		log.debug(">> getById {}", id);
 		getService().delete(id);
 	}

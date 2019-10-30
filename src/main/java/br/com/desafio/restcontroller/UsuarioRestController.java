@@ -19,5 +19,7 @@ public class UsuarioRestController extends AbstractRestController<Usuario, Long>
 	protected AbstractService<Usuario, Long> getService() {
 		return service;
 	}
+	
+	
 
 }

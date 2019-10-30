@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.desafio.domain.entities.AbstractPersistable;
@@ -50,6 +51,15 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 		return entity;
 	}
 	
+	public T update(PK id, T entity) {
+		log.debug(">> update [entity={}] ", entity);
+		Optional<T> optional = getRepository().findById(id);
+		BeanUtils.copyProperties(entity, optional.get(), new String[]{"id"});
+		T t = getRepository().save(optional.get());
+		log.debug("<< update [entity={}] ", t);
+		return entity;
+	}
+	
 	public void delete(PK id) {
 		log.debug(">> delete [id={}] ", id);
 		getRepository().deleteById(id);
@@ -59,6 +69,9 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 		log.debug(">> delete [entity={}] ", entity);
 		getRepository().delete(entity);
 	}
+
+
+	
 	
 
 }
