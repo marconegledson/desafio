@@ -1,4 +1,4 @@
-package br.com.desafio.webservices;
+package br.com.desafio.restcontroller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
