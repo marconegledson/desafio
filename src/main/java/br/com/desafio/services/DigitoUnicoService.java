@@ -44,7 +44,7 @@ public class DigitoUnicoService {
 	}
 	
 	
-	private Integer calcularDigitoUnico(BigInteger entrada) {
+	private BigInteger calcularDigitoUnico(BigInteger entrada) {
 		log.debug(">> calcularDigitoUnico [entrada={}]", entrada);
 		
 		int resultado = 0;
@@ -61,7 +61,7 @@ public class DigitoUnicoService {
 						.sum();
 		
 		log.debug("<< calcularDigitoUnico [resultado={}]", resultado);
-		return resultado;
+		return BigInteger.valueOf(resultado);
 	}
 
 	
@@ -71,14 +71,14 @@ public class DigitoUnicoService {
 		validarDigitoUnico(entrada, concatenador);
 		StringBuilder numero = new StringBuilder();
 		LongStream.range(0, concatenador).forEach(loop -> numero.append(entrada.toString()));
-		long resultado = Long.valueOf(numero.toString());
+		BigInteger resultado = new BigInteger(numero.toString());
 		
 		do {
-			resultado = calcularDigitoUnico(BigInteger.valueOf(resultado));
-		} while (resultado > 10);
+			resultado = calcularDigitoUnico(resultado);
+		} while (resultado.compareTo(BigInteger.valueOf(10)) > 0);
 		
 		log.debug("<< calcularDigitoUnico [resultado={}]", resultado);
-		return (int) resultado;
+		return resultado.intValue();
 	}
 
 }

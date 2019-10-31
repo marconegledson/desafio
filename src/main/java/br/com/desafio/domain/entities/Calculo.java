@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,10 +42,10 @@ public class Calculo extends AbstractPersistable<Long>{
 	@Column(name = "concatenador", nullable = false)
 	private Long concatenador;
 	
-	@NotNull
 	@Column(name = "resultado", nullable = false)
 	private Integer resultado;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
