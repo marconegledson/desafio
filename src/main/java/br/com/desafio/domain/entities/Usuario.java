@@ -3,6 +3,7 @@ package br.com.desafio.domain.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Usuario extends AbstractPersistable<Long>{
 	@Column(name = "email", length = 100, nullable = false)
 	private String email;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Calculo> calculos = new ArrayList<>();
 
 }

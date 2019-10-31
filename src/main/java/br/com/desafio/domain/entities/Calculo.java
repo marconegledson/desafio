@@ -47,16 +47,38 @@ public class Calculo extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	
-	@Override
-	public boolean equals(Object obj) {
-		return this.entrada.equals(((Calculo)obj).getEntrada()) && 
-				this.concatenador.equals(((Calculo)obj).getConcatenador());
-	}
-	
+
 	@Override
 	public int hashCode() {
-		return entrada.hashCode() + concatenador.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((concatenador == null) ? 0 : concatenador.hashCode());
+		result = prime * result + ((entrada == null) ? 0 : entrada.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Calculo other = (Calculo) obj;
+		if (concatenador == null) {
+			if (other.concatenador != null)
+				return false;
+		} else if (!concatenador.equals(other.concatenador))
+			return false;
+		if (entrada == null) {
+			if (other.entrada != null)
+				return false;
+		} else if (!entrada.equals(other.entrada))
+			return false;
+		return true;
+	}
+	
+	
 
 }
