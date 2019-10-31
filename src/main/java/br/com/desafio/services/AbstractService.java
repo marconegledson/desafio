@@ -60,16 +60,17 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 	
 	public T update(PK id, T entity) {
 		log.debug(">> update [entity={}] ", entity);
-		Optional<T> optional = getRepository().findById(id);
-		BeanUtils.copyProperties(entity, optional.get(), new String[]{"id"});
-		T t = getRepository().save(optional.get());
+		T entityInSession = this.findById(id);
+		BeanUtils.copyProperties(entity, entityInSession, new String[]{"id"});
+		T t = getRepository().save(entityInSession);
 		log.debug("<< update [entity={}] ", t);
 		return entity;
 	}
 	
 	public void delete(PK id) {
 		log.debug(">> delete [id={}] ", id);
-		getRepository().deleteById(id);
+		T entity = this.findById(id);
+		this.delete(entity);
 	}
 	
 	public void delete(T entity) {

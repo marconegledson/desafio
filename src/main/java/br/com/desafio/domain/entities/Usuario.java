@@ -46,7 +46,7 @@ public class Usuario extends AbstractPersistable<Long>{
 	private String email;
 	
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Calculo> calculos = new ArrayList<>();
 
 }

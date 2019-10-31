@@ -76,6 +76,10 @@ O propósito do projeto é ser um rest de leitura que será consumido por qualqu
 **[POST] http://localhost:8080/api/usuario/**  Insere um  novo usuario  
 **[DELETE] http://localhost:8080/api/usuario/1**  Remove o usuario por um determinado id  
 
+#### APIS Swagger
+**[GET] http://localhost:8080/v2/api-docs** Mostra todos os endpoints criados  
+
+
 #### Instalacao and Configuracao
 
 Para a instação o Projeto não requer muito.  

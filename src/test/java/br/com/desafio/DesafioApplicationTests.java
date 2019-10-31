@@ -5,14 +5,19 @@ import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.not;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,8 +27,10 @@ import br.com.desafio.services.DigitoUnicoService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
+@RunWith(SpringRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class DesafioApplicationTests {
+public class DesafioApplicationTests {
 
 	private ObjectMapper mapper = new ObjectMapper();
 	
@@ -34,8 +41,8 @@ class DesafioApplicationTests {
 	@LocalServerPort
 	private int port;
 	
-	@Test
-	void contextLoads() {
+	@Before
+	public void init() {
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = port;
 	}
