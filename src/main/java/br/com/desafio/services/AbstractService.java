@@ -38,6 +38,13 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 		return entity.orElseThrow(() -> new EntityNotFoundException());
 	}
 	
+	public Optional<T> getById(PK id) {
+		log.debug(">> findById [id={}] ", id);
+		Optional<T> entity = getRepository().findById(id);
+		log.debug("<< findById [id={}, entity={}] ", id, entity);
+		return entity;
+	}
+	
 	public List<T> findAll(){
 		List<T> entities = getRepository().findAll();
 		log.debug("<< findAll [entities={}] ", entities);

@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_resultado")
+@Table(name = "tb_calculo")
 @Getter @Setter @NoArgsConstructor
-public class Resultado extends AbstractPersistable<Long>{
+public class Calculo extends AbstractPersistable<Long>{
 	
-	private static final String SEQUENCE = "resultado_sequence";
+	private static final String SEQUENCE = "calculo_sequence";
 
 	@Id
 	@Column(name = "id_resultado")
@@ -42,10 +42,21 @@ public class Resultado extends AbstractPersistable<Long>{
 	
 	@NotNull
 	@Column(name = "resultado", nullable = false)
-	private BigInteger resultado;
+	private Integer resultado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.entrada.equals(((Calculo)obj).getEntrada()) && 
+				this.concatenador.equals(((Calculo)obj).getConcatenador());
+	}
+	
+	@Override
+	public int hashCode() {
+		return entrada.hashCode() + concatenador.hashCode();
+	}
 
 }

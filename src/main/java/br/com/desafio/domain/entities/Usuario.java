@@ -43,6 +43,6 @@ public class Usuario extends AbstractPersistable<Long>{
 	private String email;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	private List<Resultado> resultados = new ArrayList<>();
+	private List<Calculo> calculos = new ArrayList<>();
 
 }

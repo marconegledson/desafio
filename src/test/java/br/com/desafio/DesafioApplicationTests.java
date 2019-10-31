@@ -1,24 +1,24 @@
 package br.com.desafio;
 
+import static io.restassured.RestAssured.delete;
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.not;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.desafio.domain.entities.Usuario;
-import br.com.desafio.services.UsuarioService;
+import br.com.desafio.services.DigitoUnicoService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -28,7 +28,7 @@ class DesafioApplicationTests {
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private DigitoUnicoService digitoUnicoService;
 	
 	
 	@LocalServerPort
@@ -44,7 +44,7 @@ class DesafioApplicationTests {
 	public void testADigitoUnico() {
 		BigInteger entrada = BigInteger.valueOf(9875L);
 		Long concatenador = 4L;
-		int resultado = usuarioService.calcularDigitoUnico(entrada, concatenador);
+		int resultado = digitoUnicoService.calcularDigitoUnico(entrada, concatenador);
 		assertTrue(resultado == 8);
 	}
 	
