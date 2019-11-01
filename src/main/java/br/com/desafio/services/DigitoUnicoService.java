@@ -16,6 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class DigitoUnicoService {
 	
+	/**
+	 * Valida os parametros do calculo do digito unico
+	 * @param entrada os numeros a serem utilizados
+	 * @param concatenador o que repete os numeros
+	 */
 	private void validarDigitoUnico(BigInteger entrada, Long concatenador) {
 		if(Objects.isNull(entrada)) {
 			throw new IllegalArgumentException("Entrada invalida nao deve ser nulo ");
@@ -44,6 +49,11 @@ public class DigitoUnicoService {
 	}
 	
 	
+	/**
+	 * Realiza o somatorio dos numeros para obter o digito unico
+	 * @param entrada o numero do calculo
+	 * @return o numero calculado
+	 */
 	private BigInteger calcularDigitoUnico(BigInteger entrada) {
 		log.debug(">> calcularDigitoUnico [entrada={}]", entrada);
 		
@@ -65,6 +75,12 @@ public class DigitoUnicoService {
 	}
 
 	
+	/**
+	 * Calcula o numero unico baseado na entrada e no contenador
+	 * @param entrada o numero de entrada
+	 * @param concatenador o concatenador que representa a repeticao do numero
+	 * @return o calculo do digito unico
+	 */
 	public Integer calcularDigitoUnico(BigInteger entrada, Long concatenador) {
 		log.debug(">> calcularDigitoUnico [entrada={}, concatenador={}]", entrada, concatenador);
 		

@@ -28,6 +28,10 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 	 */
 	protected abstract AbstractService<T, PK> getService();
 
+	/**
+	 * [GET] Retorna todos os registros de uma determinada entidade
+	 * @return uma lista contendo os dados da entidade
+	 */
 	@GetMapping(value = "/")
 	public List<T> getAll() {
 		List<T> entities = new ArrayList<>();
@@ -37,6 +41,11 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 		return entities;
 	}
 	
+	/**
+	 * [GET] Retorna um registro de uma determinada entidade
+	 * @param id o id da entidade
+	 * @return a entidade
+	 */
 	@GetMapping("/{id}")
 	public T getById(@PathVariable PK id) {
 		log.debug(">> getById {}", id);
@@ -45,6 +54,10 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 		return entity;
 	}
 	
+	/**
+	 * [POST] Cria uma entidade
+	 * @param entity a entidade no formato json
+	 */
 	@PostMapping(value = "/")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void create(@Valid @RequestBody T entity){
@@ -53,6 +66,11 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 		log.debug(" << create entity {} ", entity);
 	}
 	
+	/**
+	 * [PUT] Atualiza uma entidade
+	 * @param id o id da entidade
+	 * @param entity a entidade a ser atualizado em formato json
+	 */
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void update(@PathVariable(value = "id", required = true) PK id, @Valid @RequestBody T entity){
@@ -61,6 +79,10 @@ public abstract class AbstractRestController<T extends AbstractPersistable<PK>, 
 		log.debug(" << create entity {} ", entity);
 	}
 	
+	/**
+	 * [DELETE] Deleta uma entidade pelo id
+	 * @param id o id a ser deletado
+	 */
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id", required = true) PK id) {
 		log.debug(">> getById {}", id);

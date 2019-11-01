@@ -33,6 +33,10 @@ public class CalculoRestController extends AbstractRestController<Calculo, Long>
 	@Autowired
 	private CalculoValidator validator;
 	
+	/**
+	 * Associa o validador
+	 * @param binder
+	 */
 	@InitBinder("calculo")
 	private void initBinder(WebDataBinder binder){
 		binder.addValidators(validator);
@@ -43,15 +47,25 @@ public class CalculoRestController extends AbstractRestController<Calculo, Long>
 		return service;
 	}
 	
+	/**
+	 * [POST] Realiza o calculo pela entidade do json que pode ou nao conter um usuario
+	 * @param calculo o calculo contendo ou nao o usuario
+	 * @return o resultado do calculo
+	 */
 	@PostMapping("/calcularDigitoUnico")
 	@ResponseStatus(code = HttpStatus.OK)
-	public Integer calcularDigitoUnico(@Valid @RequestBody Calculo calculo) throws Exception {
+	public Integer calcularDigitoUnico(@Valid @RequestBody Calculo calculo) {
 		log.debug(">> calcularDigitoUnico [calculo={}]", calculo);
 		Integer resultado = service.calcularDigitoUnico(calculo);
 		log.debug("<< calcularDigitoUnico [calculo={}, resultado={}]", calculo, resultado);
 		return resultado;
 	}
 	
+	/**
+	 * Busca por todos os calculos do usuario
+	 * @param idUsuario o id do usuario a ser pesquisado
+	 * @return a lista de calculos do usuario
+	 */
 	@GetMapping("/usuario/{idUsuario}")
 	public List<Calculo> buscarPorUsuario(@PathVariable(value = "idUsuario", required = true) Long idUsuario) {
 		log.debug(">> buscarPorUsuario [idUsuario={}]", idUsuario);
