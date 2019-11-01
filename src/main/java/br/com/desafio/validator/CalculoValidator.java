@@ -15,6 +15,9 @@ public class CalculoValidator implements Validator{
 		return Calculo.class.equals(clazz);
 	}
 
+	/**
+	 * Caso a entidade seja passada, valida se o id esta contido (OBRIGATORIO)
+	 */
 	@Override
 	public void validate(Object target, Errors errors) {
 		Calculo calculo = (Calculo) target;
