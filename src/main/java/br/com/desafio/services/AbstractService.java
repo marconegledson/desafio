@@ -33,6 +33,17 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 	}
 	
 	/**
+	 * Verifica se a entidade possui registros na sua base de dados
+	 * @return se possui TRUE ou nao FALSE
+	 */
+	public boolean exist() {
+		log.debug(">> isEmpty");
+		boolean isEmpty = getRepository().count() == 0;
+		log.debug("<< isEmpty [isEmpty={}] ", isEmpty);
+		return isEmpty;
+	}
+	
+	/**
 	 * Conta quantos registros possui a entidade
 	 * @return a quantidade de registros
 	 */
@@ -122,7 +133,6 @@ public abstract class AbstractService<T extends AbstractPersistable<PK>, PK exte
 		log.debug(">> delete [entity={}] ", entity);
 		getRepository().delete(entity);
 	}
-
 
 	
 	

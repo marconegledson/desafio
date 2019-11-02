@@ -126,6 +126,120 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get calculobyusuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/calculo/usuario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"calculo",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert calculo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"entrada\" : \"12458\",\n\t\"concatenador\": 78,\n\t\"usuario\": {\n\t\t\"id\": 1,\n\t\t\"nome\": \"Marcone Gledson de Almeida\",\n\t\t\"email\": \"marconegledson@gmail.com\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/calculo/calcularDigitoUnico",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"calculo",
+						"calcularDigitoUnico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert calculo sem usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"entrada\" : \"19849842\",\n\t\"concatenador\": 178\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/calculo/calcularDigitoUnico",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"calculo",
+						"calcularDigitoUnico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criptografar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Marcone Gledson de Almeida\",\n  \"email\": \"marconegledson@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/usuario/criptografar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuario",
+						"criptografar"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

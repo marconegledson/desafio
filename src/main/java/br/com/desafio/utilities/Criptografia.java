@@ -7,10 +7,12 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.Base64Utils;
 
 @Component
 public class Criptografia {
 	
+	private final String CHARSET = "UTF-8";
 	private static final String RSA = "RSA";
 	private KeyPair keyPair;
 	
@@ -23,13 +25,13 @@ public class Criptografia {
 	public String encrypt(String string) throws Exception {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, keyPair.getPublic());
-        return new String(cipher.doFinal(string.getBytes()));
+        return Base64Utils.encodeToString(cipher.doFinal(string.getBytes(CHARSET)));
     }
 	
 	public String decrypt(String string) throws Exception {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.DECRYPT_MODE, keyPair.getPrivate());
-        return new String(cipher.doFinal(string.getBytes()));
+        return Base64Utils.encodeToString(cipher.doFinal(string.getBytes(CHARSET)));
     }
 
 }

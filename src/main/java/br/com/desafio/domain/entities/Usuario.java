@@ -13,9 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,13 +34,12 @@ public class Usuario extends AbstractPersistable<Long>{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE)
 	private Long id;
 	
-	@Size(min = 5, max = 50, message = "O nome deve ter entre 5 e 50 caracteres ")
-	@Column(name = "nome", length = 50, nullable = false)
+	@NotBlank(message = "O nome não pode estar vazio")
+	@Column(name = "nome", length = 2048, nullable = false)
 	private String nome;
 	
-	@NotBlank
-	@Email( message = "O nome deve ter entre 5 e 50 caracteres ")
-	@Column(name = "email", length = 100, nullable = false)
+	@NotBlank(message = "O email não pode estar vazio")
+	@Column(name = "email", length = 2048, nullable = false)
 	private String email;
 	
 	@JsonManagedReference
